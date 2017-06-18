@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.IO;
 
-namespace ezSharp
+namespace ezcsProj
 {
-    class ezc
+    class ezcs
     {
         //User console interaction
         public static void echo(string tOut, [Optional] bool read)
@@ -25,8 +25,8 @@ namespace ezSharp
             return stringFromUser;
         }
         //user system interaction
-            //file interaction
-                //read
+        //file interaction
+        //read
         public static string readFile(string fileLocation)
         {
             string f = File.ReadAllText(fileLocation);
@@ -37,13 +37,13 @@ namespace ezSharp
             string[] contentsArray = File.ReadAllLines(fileLocation);
             return contentsArray;
         }
-                //write
+        //write
         public static void writeToFile(string fileLocation, string newFileName, string stringToWrite)
         {
             File.Create(fileLocation + newFileName).Close();
             File.WriteAllText(fileLocation + newFileName, stringToWrite);
         }
-                //Important alter
+        //Important alter
         public static bool deleteFile(string fileLocation)
         {
             if (!File.Exists(fileLocation))
@@ -78,7 +78,7 @@ namespace ezSharp
             }
         }
         //data
-            //create / parse
+        //create / parse
         public static string[] arrayFromDelimiter(int type, [Optional] char CharDelimiter, [Optional] string stringDelimiter, string toParse)
         {
             //1 = single char
@@ -94,17 +94,16 @@ namespace ezSharp
                 return parsed_2;
             }
         }
-            //convet
+        //convet
         public static string toString(object toConvert)
         {
             return Convert.ToString(toConvert);
         }
-        public static object toInt(int type,object toConvert)
+        public static int toInt(int type, object toConvert)
         {
             /*
              * 1=16
              * 2=32
-             * 3=64
             */
 
             if (type == 1)
@@ -114,10 +113,6 @@ namespace ezSharp
             else if (type == 2)
             {
                 return Convert.ToInt32(toConvert);
-            }
-            else if (type == 3)
-            {
-                return Convert.ToInt64(toConvert);
             }
             else
             {
