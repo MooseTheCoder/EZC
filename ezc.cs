@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.IO;
 
-namespace YOUR_PROJECT_NAMESPACE
+namespace ezSharp
 {
     class ezc
     {
@@ -24,32 +24,26 @@ namespace YOUR_PROJECT_NAMESPACE
             string stringFromUser = Console.ReadLine();
             return stringFromUser;
         }
-        public static string[] arrayFromDelimiter(int type, [Optional] char CharDelimiter,[Optional] string stringDelimiter, string toParse)
-        {
-            //1 = single char
-            //2 = string delimiter
-            if (type == 1)
-            {
-                string[] parsed_1 = toParse.Split(CharDelimiter);
-                return parsed_1;
-            }
-            else
-            {
-                string[] parsed_2 = toParse.Split(new[] {stringDelimiter}, StringSplitOptions.None);
-                return parsed_2;
-            }
-        }
         //user system interaction
+            //file interaction
+                //read
         public static string readFile(string fileLocation)
         {
             string f = File.ReadAllText(fileLocation);
             return f;
         }
+        public static string[] readFileLinesToArray(string fileLocation)
+        {
+            string[] contentsArray = File.ReadAllLines(fileLocation);
+            return contentsArray;
+        }
+                //write
         public static void writeToFile(string fileLocation, string newFileName, string stringToWrite)
         {
             File.Create(fileLocation + newFileName).Close();
             File.WriteAllText(fileLocation + newFileName, stringToWrite);
         }
+                //Important alter
         public static bool deleteFile(string fileLocation)
         {
             if (!File.Exists(fileLocation))
@@ -68,6 +62,37 @@ namespace YOUR_PROJECT_NAMESPACE
                     return false;
                 }
             }
-        } 
+        }
+        public static bool copyFile(string source, string destination)
+        {
+            string sourceContents = File.ReadAllText(source);
+            File.Create(destination).Close();
+            File.WriteAllText(destination, sourceContents);
+            if (File.Exists(destination))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        //data
+            //create / parse
+        public static string[] arrayFromDelimiter(int type, [Optional] char CharDelimiter, [Optional] string stringDelimiter, string toParse)
+        {
+            //1 = single char
+            //2 = string delimiter
+            if (type == 1)
+            {
+                string[] parsed_1 = toParse.Split(CharDelimiter);
+                return parsed_1;
+            }
+            else
+            {
+                string[] parsed_2 = toParse.Split(new[] { stringDelimiter }, StringSplitOptions.None);
+                return parsed_2;
+            }
+        }
     }
 }
