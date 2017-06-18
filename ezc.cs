@@ -94,5 +94,35 @@ namespace ezSharp
                 return parsed_2;
             }
         }
+            //convet
+        public static string toString(object toConvert)
+        {
+            return Convert.ToString(toConvert);
+        }
+        public static object toInt(int type,object toConvert)
+        {
+            /*
+             * 1=16
+             * 2=32
+             * 3=64
+            */
+
+            if (type == 1)
+            {
+                return Convert.ToInt16(toConvert);
+            }
+            else if (type == 2)
+            {
+                return Convert.ToInt32(toConvert);
+            }
+            else if (type == 3)
+            {
+                return Convert.ToInt64(toConvert);
+            }
+            else
+            {
+                return 0;
+            }
+        }
     }
 }
